@@ -1,0 +1,376 @@
+{
+	"info": {
+		"_postman_id": "194d13d1-9784-498d-825f-0def8677b880",
+		"name": "AdesholaAdegoke",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET",
+			"item": [
+				{
+					"name": "To list users on page 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f75a7dd6-0e78-489a-ba4d-c9bba31408be",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Body matches string total\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"total\");\r",
+									"});\r",
+									"pm.test(\"Response time is more than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.above(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/api/users?page=2",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"users"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "2"
+								}
+							]
+						},
+						"description": "{{base URL}}/api/users?page=2"
+					},
+					"response": []
+				},
+				{
+					"name": "To select a single user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c4b526ff-8bc6-4ab1-8e67-ef944c230d81",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code name has string OK\", function () {\r",
+									"    pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"pm.test(\"Body matches string for email\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"email\", \"janet.weaver@reqres.in\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/api/users/2",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"2"
+							]
+						},
+						"description": "{{base URL}}/api/users/2"
+					},
+					"response": []
+				},
+				{
+					"name": "Get all employee data",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{employee base url}}/api/v1/employees",
+							"host": [
+								"{{employee base url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"employees"
+							]
+						},
+						"description": "{{employee base url}}/api/v1/employees"
+					},
+					"response": []
+				},
+				{
+					"name": "To get a single employee data",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{employee base url}}/api/v1/employee/1",
+							"host": [
+								"{{employee base url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"employee",
+								"1"
+							]
+						},
+						"description": "{{employee base url}}/api/v1/employee/1"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "POST",
+			"item": [
+				{
+					"name": "To create User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "32d5da59-7d4d-448c-a4fd-0133e517be1d",
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code name has string created\", function () {\r",
+									"    pm.response.to.have.status(\"Created\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Body matches string for id\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"id\",\"567\");\r",
+									"});\r",
+									"pm.test(\"Your test name job\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.job).to.eql(\"leader\");\r",
+									"});\r",
+									"pm.test(\"Body matches string for createdAt\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"createdAt\",\"2020-11-23T10:00:40.843Z\")});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"morpheus\",\r\n    \"job\":\"leader\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/users",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						},
+						"description": "{{base URL}}/api/users"
+					},
+					"response": []
+				},
+				{
+					"name": "To create login credentials",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7ba85e6a-3f53-4a39-ae60-0ed42d856c93",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Status code name has string OK\", function () {\r",
+									"    pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"pm.test(\"Body matches string token\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"token\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"eve.holt@reqres.in\",\r\n    \"password\":\"cityslicka\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/login",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"login"
+							]
+						},
+						"description": "{{base URL}}/api/login"
+					},
+					"response": []
+				},
+				{
+					"name": "Create new record in database",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Adeshola\",\r\n    \"height\":\"6ft\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{employee base url}}/api/v1/create",
+							"host": [
+								"{{employee base url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"create"
+							]
+						},
+						"description": "{{employee base url}}/api/v1/create"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "DELETE",
+			"item": [
+				{
+					"name": "To delete user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "688aa084-c789-4e60-8cd1-b8f05771d398",
+								"exec": [
+									"pm.test(\"Status code is 204\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"});\r",
+									"pm.test(\"Status code name has string No Content\", function () {\r",
+									"    pm.response.to.have.status(\"No Content\");\r",
+									"});\r",
+									"pm.test(\"Response time is above than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.above(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/api/users/2",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"2"
+							]
+						},
+						"description": "{{base URL}}/api/users/2"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete an employee record",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{employee base url}}/api/v1/update/2",
+							"host": [
+								"{{employee base url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"update",
+								"2"
+							]
+						},
+						"description": "{{employee base url}}/api/v1/update/2"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "PUT",
+			"item": [
+				{
+					"name": "To update an employee record",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{employee base url}}/api/v1/update/21",
+							"host": [
+								"{{employee base url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"update",
+								"21"
+							]
+						},
+						"description": "{{employee base url}}/api/v1/update/21"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
